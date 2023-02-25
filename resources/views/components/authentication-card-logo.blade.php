@@ -1,0 +1,1 @@
+<img src="{{ asset('images/icon.svg') }}" alt="TaskMateIcon" style="width:100px;">
