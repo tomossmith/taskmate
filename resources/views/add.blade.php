@@ -16,6 +16,12 @@
                     @if ($errors->has('description'))
                         <span class="text-danger">{{ $errors->first('description') }}</span>
                     @endif
+
+                    <label for="due_date">Due:</label>
+                    <input type="date" id="due_date" name="due_date">
+
+                    <label for="urgent">Urgent?</label>
+                    <input type="checkbox" id="urgent" name="urgent">
                 </div>
 
                 <div class="form-group">

@@ -24,6 +24,8 @@ class TasksController extends Controller
         ]);
     	$task = new Task();
     	$task->description = $request->description;
+        $task->due_date = $request->due_date;
+        $task->urgent = $request->urgent;
     	$task->user_id = auth()->user()->id;
     	$task->save();
     	return redirect('/dashboard'); 
