@@ -12,6 +12,7 @@ class TasksController extends Controller
         $tasks = auth()->user()->tasks();
         return view('dashboard', compact('tasks'));
     }
+
     public function add()
     {
     	return view('add');

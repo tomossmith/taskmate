@@ -19,7 +19,7 @@
 
     <x-application-logo />
 
-    <h1 class="text-white text-center">Desktop companion to get things done!</h1>
+    <h1 class="text-center">Desktop companion to get things done!</h1>
     </div>
 
     <div class="pt-5 text-center">

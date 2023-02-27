@@ -35,7 +35,15 @@
                             {{$task->due_date}}
                         </td>
                         <td class="p-3 px-5">
-                            {{$task->urgent}}
+
+
+
+
+                        @if($task->urgent !== 1)
+                                <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Urgent</span>
+                            @else
+                            <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Not Urgent</span>
+                            @endif
                         </td>
                         <td class="p-3 px-5">
                             
