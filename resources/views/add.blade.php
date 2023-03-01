@@ -21,7 +21,10 @@
                     <input type="date" id="due_date" name="due_date">
 
                     <label for="urgent">Urgent?</label>
-                    <input type="checkbox" id="urgent" name="urgent">
+                        <select name="urgent" id="urgent">
+                            <option value="is_urgent">Urgent</option>
+                            <option value="not_urgent">Not Urgent</option>
+                        </select>
                 </div>
 
                 <div class="form-group">
