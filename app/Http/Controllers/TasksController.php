@@ -56,6 +56,8 @@ class TasksController extends Controller
                 'description' => 'required'
             ]);
     		$task->description = $request->description;
+            $task->due_date = $request->due_date;
+            $task->urgent = $request->urgent;
 	    	$task->save();
 	    	return redirect('/dashboard'); 
     	}    	
