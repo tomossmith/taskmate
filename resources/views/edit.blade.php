@@ -23,9 +23,9 @@
                         <input type="date" id="due_date" name="due_date" value="{{$task->due_date}}">
 
                         <label for="urgent">Urgent?</label>
-                        <select name="urgent" id="urgent" value="{{$task->due_date}}">
-                            <option value="is_urgent">Urgent</option>
-                            <option value="not_urgent">Not Urgent</option>
+                        <select name="urgent" id="urgent" selected="{{$task->urgent}}">
+                            <option value="is_urgent" {{ $task->urgent == 'is_urgent' ? 'selected' : '' }}>Urgent</option>
+                            <option value="not_urgent" {{ $task->urgent == 'not_urgent' ? 'selected' : '' }}>Not Urgent</option>
                         </select>
                     </div>
 
