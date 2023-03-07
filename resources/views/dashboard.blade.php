@@ -11,6 +11,12 @@
                 <div class="flex">
                     <div class="flex-auto text-2xl mb-4">Tasks List</div>
 
+
+                    <div class="flex-auto text-right mt-2">
+                        <a href="/sortASC" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Sort Date
+                            </a>
+                    </div>
+
                     <div class="flex-auto text-right mt-2">
                         <a href="/task" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add
                             new Task</a>
@@ -20,7 +26,7 @@
                     <thead>
                         <tr class="border-b">
                             <th class="text-left p-3 px-5">Task</th>
-                            <th class="text-left p-3 px-5">Due Date</th>
+                            <th class="text-left p-3 px-5"><a href="/sort/{{{ isset($sort) ? $sort : 'asc' }}}">Due Date</a></th>
                             <th class="text-left p-3 px-5">Urgent</th>
                             <th class="text-left p-3 px-5">Actions</th>
                             <th></th>
@@ -33,13 +39,14 @@
                                 {{$task->description}}
                             </td>
                             <td class="p-3 px-5">
-                                {{$task->due_date}}
+                                {{ date('d-M-y', strtotime($task->due_date)) }}
                             </td>
                             <td class="p-3 px-5">
                                 @if($task->urgent !== 'not_urgent')
-                                <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Urgent</span>
+                                <span
+                                    class="bg-red-500 font-extrabold text-white py-1 px-3 rounded-full text-xs">URGENT</span>
                                 @else
-                                <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Not Urgent</span>
+                                <span></span>
                                 @endif
                             </td>
                             <td class="p-3 px-5">

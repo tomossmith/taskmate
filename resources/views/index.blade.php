@@ -1,26 +1,29 @@
 <x-guest-layout>
-    <div class="text-center pt-5">
+  <div class="min-h-screen flex flex-col justify-center items-center">
+    <!-- Header -->
+    <header class="mb-16">
+      <h1 class="text-center">
         <x-application-logo />
-    </div>
+      </h1>
+      <p class="text-lg text-center text-gray-600 mt-4">
+        The desktop companion to get things done!
+      </p>
+    </header>
 
-    <div class="pt-5 text-center">
-        @if (Auth::check())
-        <a href="{{ route('dashboard') }}">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded">
-                View Tasks
-            </button>
+    <!-- Buttons -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+      @if (Auth::check())
+        <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg rounded-full py-4 px-12 font-semibold bg-blue-300 hover:bg-gray-200 transition-colors duration-300">
+          View Tasks
         </a>
-        @else
-        <a href="{{ route('login') }}">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded">
-                Login
-            </button>
+      @else
+        <a href="{{ route('register') }}" class="btn btn-primary btn-lg rounded-full py-4 px-12 font-semibold bg-blue-300 hover:bg-gray-200 transition-colors duration-300">
+          Sign Up
         </a>
-        <a href="{{ route('register') }}">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded">
-                Register
-            </button>
+        <a href="{{ route('login') }}" class="btn btn-secondary btn-lg rounded-full py-4 px-12 font-semibold bg-blue-300 hover:bg-gray-200 transition-colors duration-300">
+          Log In
         </a>
-        @endif
+      @endif
     </div>
+  </div>
 </x-guest-layout>

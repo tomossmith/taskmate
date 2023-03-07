@@ -10,6 +10,13 @@ class TasksController extends Controller
     public function index()
     {
         $tasks = auth()->user()->tasks();
+        
+        return view('dashboard', compact('tasks'));
+    }
+
+    public function sortDESC()
+    {
+        $tasks = auth()->user()->tasks::orderBy('due_date', 'ASC')->get();
         return view('dashboard', compact('tasks'));
     }
 

@@ -18,7 +18,7 @@
                     @endif
 
                     <label for="due_date">Due:</label>
-                    <input type="date" id="due_date" name="due_date">
+                    <input placeholder="dd-mm-yyyy" type="date" id="due_date" name="due_date">
 
                     <label for="urgent">Urgent?</label>
                         <select name="urgent" id="urgent">
