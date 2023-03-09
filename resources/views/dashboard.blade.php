@@ -1,5 +1,5 @@
 <x-app-layout>
-  <div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen mx-auto px-4 sm:px-6 lg:px-8">
     <header class="my-16">
       <h1 class="text-5xl text-center text-gray-800 font-bold">My Tasks</h1>
       <p class="text-lg text-center text-gray-600 mt-4">What do you need to get done today?</p>
@@ -26,32 +26,69 @@
           </th>
           <th class="px-4 py-2">Urgent</th>
           <th class="px-4 py-2">Actions</th>
+          <th class="px-4 py-2">Completed</th>
         </tr>
       </thead>
       <tbody>
         @foreach(auth()->user()->tasks as $task)
         <tr>
-          <td class="border px-4 py-2">{{ $task->description }}</td>
-          <td id="date-cell" class="border px-4 py-2 text-center">{{ $task->due_date }}</td>
-          <td class="border px-4 py-2 text-center">
-            @if($task->urgent !== 'not_urgent')
-            <span class="bg-red-500 font-extrabold text-white px-4 py-2 rounded-full text-xs text-center">URGENT</span>
-            @else
-            <span></span>
-            @endif
-          </td>
-          <td class="border px-4 py-2 text-center">
-            <a href="/task/{{$task->id}}" name="edit" class="text-indigo-600 hover:text-indigo-900 font-bold mr-4">Edit</a>
-            <form action="/task/{{$task->id}}" class="inline-block">
-              <button type="submit" name="delete" formmethod="POST" style="display: inline-block;" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
-                Delete
-              </button>
-              {{ csrf_field() }}
-            </form>
-          </td>
-        </tr>
+  <td class="border px-4 py-2">{{ $task->description }}</td>
+  <td id="date-cell" class="border px-4 py-2 text-center">{{ $task->due_date }}</td>
+  <td class="border px-4 py-2 text-center">
+    @if($task->urgent !== 'not_urgent')
+    <span class="bg-red-500 font-extrabold text-white px-4 py-2 rounded-full text-xs text-center">URGENT</span>
+    @else
+    <span></span>
+    @endif
+  </td>
+  <td class="border px-4 py-2 text-center">
+    <a href="/task/{{$task->id}}" name="edit" class="text-indigo-600 hover:text-indigo-900 font-bold mr-4">Edit</a>
+    <form action="/task/{{$task->id}}" class="inline-block">
+      <button type="submit" name="delete" formmethod="POST" style="display: inline-block;" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+        Delete
+      </button>
+      {{ csrf_field() }}
+    </form>
+  </td>
+  <td class="border px-4 py-2 text-center">
+    <form action="/task/{{$task->id}}/completed" method="POST">
+      <input type="checkbox" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+      {{ csrf_field() }}
+    </form>
+  </td>
+</tr>
+
         @endforeach
       </tbody>
     </table>
+
+    ------
+
+    <table id="completed-tasks-table" class="table-auto w-full mt-10">
+  <thead>
+    <tr>
+      <th class="px-4 py-2">Description</th>
+      <th class="px-4 py-2">Completion Date</th>
+      <th class="px-4 py-2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(auth()->user()->tasks()->where('completed', true)->get() as $task)
+    <tr>
+      <td class="border px-4 py-2">{{ $task->description }}</td>
+      <td class="border px-4 py-2 text-center">{{ $task->completion_date }}</td>
+      <td class="border px-4 py-2 text-center">
+        <form action="/task/{{$task->id}}/delete" method="POST">
+          <button type="submit" name="delete" formmethod="POST" style="display: inline-block;" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+            Delete
+          </button>
+          {{ csrf_field() }}
+        </form>
+      </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+
   </div>
 </x-app-layout>
