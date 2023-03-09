@@ -28,7 +28,7 @@ class TasksController extends Controller
 
         $task = new Task();
         $task->description = $request->description;
-
+        $task->due_date_checkbox = $request->due_date_checkbox;
         if ($request->due_date == '-') {
             $task->due_date = "-";
         } else {
@@ -64,6 +64,7 @@ class TasksController extends Controller
             ]);
 
             $task->description = $request->description;
+            $task->due_date_checkbox = $request->due_date_checkbox;
 
             if ($request->due_date == '-') {
                 $task->due_date = "-";
@@ -78,4 +79,21 @@ class TasksController extends Controller
             return redirect('/dashboard'); 
         }
     }
+
+    public function markAsCompleted(Task $task)
+{
+    $task->completed = true;
+    $task->save();
+
+    // Move task to completed tasks table
+    CompletedTask::create([
+        'description' => $task->description,
+        'due_date_checkbox' => $task->due_date_checkbox,
+        'due_date' => $task->due_date,
+        'urgent' => $task->urgent,
+        'user_id' => $task->user_id
+    ]);
+
+    return redirect()->back();
+}
 }
