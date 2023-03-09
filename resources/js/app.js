@@ -24,7 +24,6 @@ Alpine.start();
 
 // Sort task table by date order
 
-
 const ascsortButton = document.getElementById("asc-date-sort-button");
 const decsortButton = document.getElementById("dec-date-sort-button");
 const tableBody = document.querySelector("tbody");
