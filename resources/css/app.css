@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
- body {
-
- }
+#due_date_picker {
+    display: none;
+}

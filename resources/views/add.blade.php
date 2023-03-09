@@ -17,8 +17,13 @@
                         <span class="text-danger">{{ $errors->first('description') }}</span>
                     @endif
 
+                    <input type="checkbox" id="due_date_checkbox">
+                    <label> Do you have a date this should be completed by?</label><br>
+                    
+                    <div id="due_date_picker">
                     <label for="due_date">Due:</label>
                     <input placeholder="dd-mm-yyyy" type="date" id="due_date" name="due_date">
+                    </div>
 
                     <label for="urgent">Urgent?</label>
                         <select name="urgent" id="urgent">

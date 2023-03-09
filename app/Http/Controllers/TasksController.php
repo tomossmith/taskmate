@@ -32,7 +32,12 @@ class TasksController extends Controller
         ]);
     	$task = new Task();
     	$task->description = $request->description;
-        $task->due_date = $request->due_date;
+        if ($request->due_date == null) {
+            $task->due_date = "No due date";
+        }
+        else {
+            $task->due_date = $request->due_date;
+        }
         $task->urgent = $request->urgent;
     	$task->user_id = auth()->user()->id;
     	$task->save();
